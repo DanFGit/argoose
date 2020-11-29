@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import Product from "../Product/Product";
 import * as States from "./ProductGridStates";
 import * as Styled from "./ProductGrid.styles";
-import Product from "../Product/Product";
 
-const ProductGrid = ({ products = [] }) => {
+import { fetchProducts as fetchProductsAction } from "../../state/reducers/products";
+
+const ProductGrid = ({ products, status, fetchProducts }) => {
+  useEffect(() => {
+    if (products.length === 0 && status === "idle") fetchProducts();
+  }, []);
+
+  if (status === "idle" || status === "pending") return <States.Loading />;
+  if (status === "rejected") return <States.Error />;
   if (products.length === 0) return <States.Empty />;
-  // if (error) return <States.Error />;
-  // if (loading) return <States.Loading />;
 
   return (
     <Styled.Grid>
@@ -17,4 +26,32 @@ const ProductGrid = ({ products = [] }) => {
   );
 };
 
-export default ProductGrid;
+ProductGrid.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      productId: PropTypes.string.isRequired,
+      sku: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  status: PropTypes.oneOf(["idle", "pending", "fulfilled", "rejected"])
+    .isRequired,
+  fetchProducts: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { products } = state;
+
+  return {
+    products: Object.keys(products.product).map((id) => products.product[id]),
+    status: products.status,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchProducts: () => dispatch(fetchProductsAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductGrid);

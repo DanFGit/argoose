@@ -1,4 +1,26 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+const loading = keyframes`
+  0%, 100% {
+    text-shadow: -5px -5px var(--secondary-color), 5px 5px var(--tertiary-color),
+    3px -3px var(--primary-color), -3px 3px var(--primary-color);
+  }
+
+  25% {
+    text-shadow: 3px -3px var(--secondary-color), -3px 3px var(--tertiary-color),
+    5px 5px var(--primary-color), -5px -5px var(--primary-color);
+  }
+
+  50% {
+    text-shadow: 5px 5px var(--secondary-color), -5px -5px var(--tertiary-color),
+    -3px 3px var(--primary-color), 3px -3px var(--primary-color);
+  }
+
+  75% {
+    text-shadow: -3px 3px var(--secondary-color), 3px -3px var(--tertiary-color),
+    -5px -5px var(--primary-color), 5px 5px var(--primary-color);
+  }
+`;
 
 export const Grid = styled.ul`
   margin: 0 20px;
@@ -24,8 +46,15 @@ export const Heading = styled.h2`
   font-size: 2rem;
   color: #fff;
   text-align: center;
+  transition: text-shadow 0.1s linear;
   text-shadow: -3px -3px var(--secondary-color), 3px 3px var(--tertiary-color),
     3px -3px var(--primary-color), -3px 3px var(--primary-color);
+
+  ${(props) =>
+    props.animated &&
+    css`
+      animation: ${loading} 1s linear infinite;
+    `}
 `;
 
 export const Text = styled.p`

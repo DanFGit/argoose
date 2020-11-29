@@ -10,7 +10,11 @@ export const Empty = () => (
   </Styled.Takeover>
 );
 
-export const Loading = () => <p>Loading</p>;
+export const Loading = () => (
+  <Styled.Takeover>
+    <Styled.Heading animated>fetching products</Styled.Heading>
+  </Styled.Takeover>
+);
 
 export const Error = () => (
   <Styled.Takeover>

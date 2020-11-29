@@ -1,17 +1,33 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+
+import { render, screen } from "../../utils/renderer";
+import {
+  loadingProducts,
+  errorProducts,
+  noProducts,
+  products,
+  initialProducts,
+} from "../__mocks__/products.mock";
 
 import ProductGrid from "./ProductGrid";
-import { products } from "../__mocks__/products.mock";
 
 it("should show an message when there are no products", () => {
-  render(<ProductGrid />);
-
+  render(<ProductGrid />, { initialState: noProducts });
   expect(screen.getByText("we've run out of products!")).toBeTruthy();
 });
 
+it("should show a loading message when fetching the products", () => {
+  render(<ProductGrid />, { initialState: loadingProducts });
+  expect(screen.getByText("fetching products")).toBeTruthy();
+});
+
+it("should show a error message when there is an error", () => {
+  render(<ProductGrid />, { initialState: errorProducts });
+  expect(screen.getByText("we've had an issue")).toBeTruthy();
+});
+
 it("should show products", () => {
-  render(<ProductGrid products={products} />);
+  render(<ProductGrid />, { initialState: products });
 
   expect(screen.getByText("Challenge White Desk Fan - 12 Inch")).toBeTruthy();
   expect(screen.getByText("Plain Vest Top 12 BLACK")).toBeTruthy();
@@ -33,4 +49,15 @@ it("should show products", () => {
       "Duracell Supreme 750 mAh Rechargeable AAA Batteries - 4 Pack"
     )
   ).toBeTruthy();
+});
+
+it("should fetch the products if there aren't any and the status is idle", () => {
+  fetch.mockResponseOnce([]);
+
+  render(<ProductGrid />, { initialState: initialProducts });
+
+  expect(fetch).toHaveBeenCalledTimes(1);
+  expect(fetch).toHaveBeenCalledWith(
+    "https://jsainsburyplc.github.io/front-end-test/products.json"
+  );
 });
