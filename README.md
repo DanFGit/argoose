@@ -5,22 +5,26 @@ and create a basket.
 
 ## Running the project locally
 
-In development mode:
+In development mode, install the packages and start the dev server. You can
+access the app at `http://localhost:3000`:
 
 ```sh
 yarn
 yarn start
 ```
 
-In production mode:
+In production mode, install the packages, build the files then use a server to
+serve them. You can access the app at `http://localhost:8080` (depends on your
+server of choice):
 
 ```sh
 yarn
 yarn build
-yarn serve
+
+npx http-server ./public
 ```
 
-or with Docker:
+Or you can use Docker. You can access the app at `http://localhost:8080`.
 
 ```sh
 docker build -t argoose .
