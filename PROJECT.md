@@ -37,6 +37,7 @@ Extra features:
 ## Design
 
 - Client-side or server-side rendering?
+- CSS Variables for themeing - NEW TO ME
 - Firebase
   - hosting
     - preview channels from feature branch - NEW TO ME
@@ -65,7 +66,9 @@ Extra features:
   - favourites count
   - basket count
 - Create product card
-- Fetch products at build-time
+- Fetch products on page load
+  - loading skeleton
+  - error handling
 - Cypress
 - Add to basket (update basket count, save to local storage)
 - Add to favourites (update favourites count, save to local storage)
