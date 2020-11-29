@@ -31,3 +31,30 @@ docker build -t argoose .
 docker run -p 8080:8080 argoose
 ```
 
+## Unit testing
+
+To run the tests in watch mode:
+
+```sh
+yarn
+yarn test
+```
+
+To run the tests without watch mode:
+
+```
+sh
+yarn test:ci
+```
+
+## Linting and formatting
+
+We're using ESLint to detect code problems, and prettier to format code. Highly
+recommend you enable your editor's "format on save" option to automatically
+run prettier every time you save a file.
+
+```sh
+yarn lint
+yarn lint --fix
+yarn format
+```

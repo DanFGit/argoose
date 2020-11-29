@@ -23,7 +23,7 @@ Extra features:
   - add to favourites
   - delete
   - opening trolley
-- Gestures - NEW TO ME 
+- Gestures - NEW TO ME
   - swipe product to the left to add it to favourites, to the right to add it to basket
   - when viewing favourites, swipe to remove or add to basket
   - when viewing basket, swipe to remove or move to favourites
