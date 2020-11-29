@@ -36,7 +36,7 @@ Extra features:
 
 ## Design
 
-- Client-side or server-side rendering?
+- Client-side rendering
 - CSS Variables for themeing - NEW TO ME
 - Firebase
   - hosting
@@ -44,41 +44,52 @@ Extra features:
   - persist data in Firestore?
   - authentication? social sign in too
   - serverless functions for API - NEW TO ME
-- ES modules in the browser - NEW TO ME
 - Github actions for CICD
-- Fetch products at build time or run time?
-  - if build time, we would also implement a webhook to trigger a re-build when the JSON
-    changes (e.g. when somebody clicks "publish" in a CMS). and/or as a nightly cron.
+- Fetch products at run time?
 - Feature toggles - toggle off favourites, a/b test? firebase remote config
 - Optimistic UI (don't wait for api calls, assume they're successful)
 
 ## Stories
 
-- Design Redux state
+- Design Redux state ✅
 - Initial app setup ✅
   - React, webpack, babel, docker ✅
   - Unit testing, linting ✅
   - Documentation ✅
-- Add Redux
+- Add Redux ✅
 - Create Site header ✅
   - logo ✅
   - skip to content ✅
-  - favourites count
   - basket count ✅
-- Create product card
-- Fetch products on page load
-  - loading skeleton
-  - error handling
+- Create product card ✅
+- Fetch products on page load ✅
+  - loading skeleton ✅
+  - error handling ✅
 - Cypress
-- Add to basket (update basket count, save to local storage)
-- Add to favourites (update favourites count, save to local storage)
-- Basket page
-- Favourites page
 - Deploy to firebase
-- Save basket to firebase (use cookie for basket id)
-- Save favourites to firebase (use UUID for favourites. makes a shareable favourites link.)
 
-- Authentication (theoretical)
+---
+
+- FEATURE: Basket
+  - count in header
+  - add to basket button
+  - basket page
+  - remove from basket
+  - amend quantites
+  - save basket to firebase (use a cookie for basket id)
+
+---
+
+- FEATURE: Favourites
+  - count in header
+  - add to/remove from favourites button
+  - favourites page
+  - save favourites to firebase (use UUID for favourites. save list of UUIDs in
+    localstorage. makes a shareable favourites link.)
+
+---
+
+- FEATURE: Authentication
   - profile page to change email/password or link/unlink accounts, see order history
   - reset password page
   - on login, if user has a guest basket, would need to save to database
@@ -91,4 +102,4 @@ Extra features:
 
 - Wouldn't usually use Redux for something as simple as this unless it was
   expected to grow more complex in the near future
-- One of the product images is broken
+- One of the products has a broken image so I build the image URL dynamically
