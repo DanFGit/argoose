@@ -49,22 +49,22 @@ Extra features:
 - Fetch products at build time or run time?
   - if build time, we would also implement a webhook to trigger a re-build when the JSON
     changes (e.g. when somebody clicks "publish" in a CMS). and/or as a nightly cron.
-- Feature toggles
+- Feature toggles - toggle off favourites, a/b test? firebase remote config
 - Optimistic UI (don't wait for api calls, assume they're successful)
 
 ## Stories
 
 - Design Redux state
-- Initial app setup
-  - React, webpack, babel, docker
-  - Unit testing, linting
-  - Documentation
+- Initial app setup ✅
+  - React, webpack, babel, docker ✅
+  - Unit testing, linting ✅
+  - Documentation ✅
 - Add Redux
-- Create Site header
-  - logo
-  - skip to content
+- Create Site header ✅
+  - logo ✅
+  - skip to content ✅
   - favourites count
-  - basket count
+  - basket count ✅
 - Create product card
 - Fetch products on page load
   - loading skeleton
