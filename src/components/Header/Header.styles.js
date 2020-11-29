@@ -11,10 +11,11 @@ export const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: box-shadow 0.1s linear;
 
   svg {
     fill: var(--primary-color);
-    transition: fill 0.05s linear;
+    transition: fill 0.1s linear;
 
     :hover {
       fill: var(--secondary-color);
@@ -28,6 +29,7 @@ export const Logo = styled.h1`
   :first-letter {
     font-weight: var(--bold-weight);
     color: var(--primary-color);
+    transition: color 0.1s linear;
   }
 `;
 

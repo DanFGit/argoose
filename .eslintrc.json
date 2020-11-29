@@ -20,7 +20,9 @@
     "sourceType": "module"
   },
   "plugins": ["react", "jest", "jest-dom"],
-  "rules": {},
+  "rules": {
+    "jest/no-mocks-import": 0
+  },
   "settings": {
     "react": {
       "version": "detect"
