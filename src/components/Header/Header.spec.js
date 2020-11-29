@@ -9,5 +9,5 @@ it("test jest setup", () => {
 
 it("should display the company name", () => {
   render(<Header />);
-  expect(screen.getByText("Argoose"));
+  expect(screen.getByText("Argoose")).toBeTruthy();
 });
