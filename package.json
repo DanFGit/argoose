@@ -11,7 +11,8 @@
     "test": "jest --watch",
     "test:ci": "jest",
     "lint": "eslint ./src/",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "yarn build && firebase deploy"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

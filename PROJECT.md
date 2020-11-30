@@ -66,13 +66,13 @@ Extra features:
   - loading skeleton ✅
   - error handling ✅
 - Cypress
-- Deploy to firebase
+- Deploy to firebase ✅
 
 ---
 
 - FEATURE: Basket
-  - count in header
-  - add to basket button
+  - count in header ✅
+  - add to basket button ✅
   - basket page
   - remove from basket
   - amend quantites

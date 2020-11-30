@@ -4,5 +4,7 @@ public
 .vscode
 .DS_Store
 .eslintcache
+.firebaserc
+.firebase
 
 *.log
