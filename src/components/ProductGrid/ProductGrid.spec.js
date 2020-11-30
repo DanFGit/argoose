@@ -7,9 +7,19 @@ import {
   noProducts,
   products,
   initialProducts,
-} from "../__mocks__/products.mock";
+} from "../../state/__mocks__/products.mock";
+import { addItem } from "../../state/slices/basket";
 
 import ProductGrid from "./ProductGrid";
+
+jest.mock("../../state/slices/basket", () => {
+  const actual = jest.requireActual("../../state/slices/basket");
+
+  return {
+    ...actual,
+    addItem: jest.fn(actual.addItem),
+  };
+});
 
 it("should show an message when there are no products", () => {
   render(<ProductGrid />, { initialState: noProducts });
@@ -60,4 +70,13 @@ it("should fetch the products if there aren't any and the status is idle", () =>
   expect(fetch).toHaveBeenCalledWith(
     "https://jsainsburyplc.github.io/front-end-test/products.json"
   );
+});
+
+it("should add to basket", () => {
+  render(<ProductGrid />, { initialState: products });
+
+  expect(addItem).toHaveBeenCalledTimes(0);
+  screen.getByTestId("add-5493179").click();
+  expect(addItem).toHaveBeenCalledTimes(1);
+  expect(addItem).toHaveBeenCalledWith({ id: "5493179", quantity: 1 });
 });

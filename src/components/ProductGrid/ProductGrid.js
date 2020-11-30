@@ -6,9 +6,10 @@ import Product from "../Product/Product";
 import * as States from "./ProductGridStates";
 import * as Styled from "./ProductGrid.styles";
 
-import { fetchProducts as fetchProductsAction } from "../../state/reducers/products";
+import { fetchProducts as fetchProductsAction } from "../../state/slices/products";
+import { addItem } from "../../state/slices/basket";
 
-const ProductGrid = ({ products, status, fetchProducts }) => {
+const ProductGrid = ({ products, status, fetchProducts, addToBasket }) => {
   useEffect(() => {
     if (products.length === 0 && status === "idle") fetchProducts();
   }, []);
@@ -20,7 +21,11 @@ const ProductGrid = ({ products, status, fetchProducts }) => {
   return (
     <Styled.Grid>
       {products.map((product) => (
-        <Product key={product.productId} {...product} />
+        <Product
+          key={product.productId}
+          {...product}
+          addToBasket={() => addToBasket(product.productId)}
+        />
       ))}
     </Styled.Grid>
   );
@@ -39,6 +44,7 @@ ProductGrid.propTypes = {
   status: PropTypes.oneOf(["idle", "pending", "fulfilled", "rejected"])
     .isRequired,
   fetchProducts: PropTypes.func.isRequired,
+  addToBasket: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -52,6 +58,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchProducts: () => dispatch(fetchProductsAction()),
+  addToBasket: (id) => dispatch(addItem({ id, quantity: 1 })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductGrid);

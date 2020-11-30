@@ -7,7 +7,6 @@ export const Button = styled.button`
   transition: background 0.1s;
 
   :hover,
-  :focus,
   :active {
     background: var(--secondary-color);
   }

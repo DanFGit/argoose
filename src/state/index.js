@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import createRootReducer from "./reducers";
+import createRootReducer from "./slices";
 
 export default function configureAppStore(preloadedState) {
   const store = configureStore({
@@ -8,7 +8,7 @@ export default function configureAppStore(preloadedState) {
   });
 
   if (process.env.NODE_ENV !== "production" && module.hot) {
-    module.hot.accept("./reducers", () =>
+    module.hot.accept("./slices", () =>
       store.replaceReducer(createRootReducer())
     );
   }

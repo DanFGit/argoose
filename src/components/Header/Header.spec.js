@@ -1,28 +1,41 @@
 import React from "react";
 import { render, screen } from "../../utils/renderer";
+import {
+  emptyBasket,
+  multipleItemSingleQuantityBasket,
+  singleItemMultipleQuantityBasket,
+  singleItemSingleQuantityBasket,
+} from "../../state/__mocks__/basket.mock";
 
 import Header from "./Header";
 
 it("should display the company name", () => {
-  render(<Header />);
+  render(<Header />, { initialState: emptyBasket });
   expect(screen.getByText("Argoose")).toBeTruthy();
 });
 
 it("should show an empty basket", () => {
-  render(<Header total={0} items={0} />);
+  render(<Header />, { initialState: emptyBasket });
   expect(screen.getByText("Empty")).toBeTruthy();
 });
 
 it("should show the basket info", () => {
-  render(<Header total={12.34} items={8} />);
-  expect(screen.getByText("£12.34")).toBeTruthy();
-  expect(screen.getByText("8 items")).toBeTruthy();
+  render(<Header />, { initialState: multipleItemSingleQuantityBasket });
+  expect(screen.getByText("£55.98")).toBeTruthy();
+  expect(screen.getByText("3 items")).toBeTruthy();
 });
 
-it("should pluralise the basket info correctly", () => {
-  const { rerender } = render(<Header total={12.34} items={1} />);
+it("should show singular item counts", () => {
+  render(<Header />, { initialState: singleItemSingleQuantityBasket });
   expect(screen.getByText("1 item")).toBeTruthy();
+});
 
-  rerender(<Header total={12.34} items={2} />);
+it("should pluralise text when the basket contains multiple quantities of a single item", () => {
+  render(<Header />, { initialState: singleItemMultipleQuantityBasket });
   expect(screen.getByText("2 items")).toBeTruthy();
+});
+
+it("should pluralise text when the basket contains multiple items of single quantity", () => {
+  render(<Header />, { initialState: multipleItemSingleQuantityBasket });
+  expect(screen.getByText("3 items")).toBeTruthy();
 });

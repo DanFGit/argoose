@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import { getBasketCount, getBasketPrice } from "../../state/selectors/basket";
 
 import BasketIcon from "../Icons/BasketIcon";
 import ScreenReader from "../ScreenReader/ScreenReader";
@@ -32,15 +35,14 @@ const Header = ({ total, items }) => (
   </Styled.Wrapper>
 );
 
-// todo: hook up to redux
-Header.defaultProps = {
-  total: 4.99,
-  items: 2,
-};
-
 Header.propTypes = {
   total: PropTypes.number,
   items: PropTypes.number,
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  total: getBasketPrice(state),
+  items: getBasketCount(state),
+});
+
+export default connect(mapStateToProps)(Header);
