@@ -67,6 +67,7 @@ Extra features:
   - error handling ✅
 - Cypress
 - Deploy to firebase ✅
+- Add a manifest.json
 
 ---
 
