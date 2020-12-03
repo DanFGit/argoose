@@ -26,7 +26,7 @@ const Basket = () => {
     <>
       <Heading as="h2">your basket</Heading>
       <Text>
-        <strong>£{price}</strong>, when you&apos;re ready
+        <strong>£{price.toFixed(2)}</strong>, when you&apos;re ready
       </Text>
 
       <Styled.List>
