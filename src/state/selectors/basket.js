@@ -3,6 +3,9 @@ import { getProducts } from "./products";
 
 export const getBasketItems = (state) => state.basket.items;
 
+export const getBasketItemsArray = (state) =>
+  Object.keys(state.basket.items).map((id) => state.basket.items[id]);
+
 export const getBasketCount = createSelector([getBasketItems], (items) => {
   let count = 0;
 

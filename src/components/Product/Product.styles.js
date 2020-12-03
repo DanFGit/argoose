@@ -11,7 +11,7 @@ export const Product = styled.li`
     "image sku"
     "image ctas";
   grid-template-columns: 130px 1fr;
-  grid-template-rows: 1fr 1rem 1rem max-content;
+  grid-template-rows: 1fr min-content min-content max-content;
   grid-gap: 4px;
 
   padding-bottom: 8px;
@@ -30,6 +30,13 @@ export const Price = styled.p`
   grid-area: price;
   text-align: right;
   font-weight: var(--bold-weight);
+`;
+
+export const Quantity = styled.span`
+  text-align: right;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+  font-weight: var(--font-weight);
 `;
 
 export const SKU = styled.p`

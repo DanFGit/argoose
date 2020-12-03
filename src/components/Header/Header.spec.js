@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "../../utils/renderer";
+import { render, screen, fireEvent } from "../../utils/renderer";
 import {
   emptyBasket,
   multipleItemSingleQuantityBasket,
@@ -38,4 +38,32 @@ it("should pluralise text when the basket contains multiple quantities of a sing
 it("should pluralise text when the basket contains multiple items of single quantity", () => {
   render(<Header />, { initialState: multipleItemSingleQuantityBasket });
   expect(screen.getByText("3 items")).toBeTruthy();
+});
+
+it("should show a close icon when displaying the basket", () => {
+  render(<Header />, {
+    initialState: multipleItemSingleQuantityBasket,
+    initialEntries: ["/basket"],
+  });
+
+  expect(screen.getByText("Close")).toBeTruthy();
+});
+
+it("should navigate between the product page and the basket page", async () => {
+  render(<Header />, {
+    initialState: emptyBasket,
+  });
+
+  expect(screen.queryByText("Empty")).toBeVisible();
+  expect(screen.queryByText("Close")).not.toBeInTheDocument();
+
+  await fireEvent.click(screen.getByText("Empty"));
+
+  expect(screen.queryByText("Empty")).not.toBeInTheDocument();
+  expect(screen.queryByText("Close")).toBeVisible();
+
+  await fireEvent.click(screen.getByText("Argoose"));
+
+  expect(screen.queryByText("Empty")).toBeVisible();
+  expect(screen.queryByText("Close")).not.toBeInTheDocument();
 });

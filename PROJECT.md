@@ -73,8 +73,8 @@ Extra features:
 - FEATURE: Basket
   - count in header ✅
   - add to basket button ✅
-  - basket page
-  - remove from basket
+  - basket page ✅
+  - remove from basket ✅
   - amend quantites
   - save basket to firebase (use a cookie for basket id)
 

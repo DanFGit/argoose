@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -22,6 +24,9 @@ const config = {
     port: 3000,
     contentBase: "./public",
     hot: true,
+    historyApiFallback: {
+      index: "index.html",
+    },
   },
 };
 

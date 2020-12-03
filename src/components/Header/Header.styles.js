@@ -13,13 +13,25 @@ export const Wrapper = styled.header`
   align-items: center;
   transition: box-shadow 0.1s linear;
 
-  svg {
-    fill: var(--primary-color);
-    transition: fill 0.1s linear;
+  a,
+  a:visited {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.1s linear;
 
     :hover {
-      fill: var(--secondary-color);
+      color: var(--tertiary-color);
+
+      svg {
+        fill: var(--tertiary-color);
+      }
     }
+  }
+
+  svg {
+    display: block;
+    fill: var(--primary-color);
+    transition: fill 0.1s linear;
   }
 `;
 

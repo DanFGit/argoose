@@ -3,7 +3,12 @@ import {
   singleItemMultipleQuantityBasket,
   singleItemSingleQuantityBasket,
 } from "../__mocks__/basket.mock";
-import { getBasketCount, getBasketItems, getBasketPrice } from "./basket";
+import {
+  getBasketCount,
+  getBasketItems,
+  getBasketItemsArray,
+  getBasketPrice,
+} from "./basket";
 
 it("should get the basket items", () => {
   expect(getBasketItems(singleItemSingleQuantityBasket)).toEqual({
@@ -12,6 +17,23 @@ it("should get the basket items", () => {
       quantity: 1,
     },
   });
+});
+
+it("should get the basket items as an array", () => {
+  expect(getBasketItemsArray(multipleItemSingleQuantityBasket)).toEqual([
+    {
+      id: "4251824",
+      quantity: 1,
+    },
+    {
+      id: "5493179",
+      quantity: 1,
+    },
+    {
+      id: "tuc132404445",
+      quantity: 1,
+    },
+  ]);
 });
 
 it("should calculate the number of items in the basket", () => {

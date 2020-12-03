@@ -1,18 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Takeover, Heading, Text } from "../Takeover/Takeover";
 
 export const Empty = () => (
   <Takeover>
-    <Heading>we&apos;ve run out of products!</Heading>
+    <Heading>there&apos;s nothing here!</Heading>
 
-    {/* "stay tuned" would ideally be a CTA to social media or a newsletter sign up */}
-    <Text>stay tuned for future product launches</Text>
+    <Link to="/">
+      <Text>time to go shopping</Text>
+    </Link>
   </Takeover>
 );
 
 export const Loading = () => (
   <Takeover>
-    <Heading animated>fetching products</Heading>
+    <Heading animated>fetching basket</Heading>
   </Takeover>
 );
 

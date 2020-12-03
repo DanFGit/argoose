@@ -1,4 +1,8 @@
-import basket, { addItem } from "./basket";
+import {
+  singleItemMultipleQuantityBasket,
+  singleItemSingleQuantityBasket,
+} from "../__mocks__/basket.mock";
+import basket, { addItem, removeItem } from "./basket";
 
 it("should initialise with no products", () => {
   expect(basket(undefined, {})).toEqual({ items: {} });
@@ -17,11 +21,42 @@ it("should add multiple quantities of a new item", () => {
 });
 
 it("should increase the quantity when adding an already added item", () => {
-  const initialState = {
-    items: { 123: { id: "123", quantity: 3 } },
-  };
+  expect(
+    basket(
+      singleItemMultipleQuantityBasket.basket,
+      addItem({ id: "5493179", quantity: 2 })
+    )
+  ).toEqual({
+    items: { 5493179: { id: "5493179", quantity: 4 } },
+  });
+});
 
-  expect(basket(initialState, addItem({ id: "123", quantity: 2 }))).toEqual({
-    items: { 123: { id: "123", quantity: 5 } },
+it("should remove an item", () => {
+  expect(
+    basket(singleItemSingleQuantityBasket.basket, removeItem({ id: "5493179" }))
+  ).toEqual({
+    items: {},
+  });
+});
+
+it("should remove all quantity of an item if no quantity is specified", () => {
+  expect(
+    basket(
+      singleItemMultipleQuantityBasket.basket,
+      removeItem({ id: "5493179" })
+    )
+  ).toEqual({
+    items: {},
+  });
+});
+
+it("should remove a specific quantity of an item", () => {
+  expect(
+    basket(
+      singleItemMultipleQuantityBasket.basket,
+      removeItem({ id: "5493179", quantity: 1 })
+    )
+  ).toEqual({
+    items: { 5493179: { id: "5493179", quantity: 1 } },
   });
 });

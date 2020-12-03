@@ -3,9 +3,11 @@ import "regenerator-runtime/runtime";
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { BrowserRouter, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import ProductGrid from "./components/ProductGrid/ProductGrid";
+import Basket from "./components/Basket/Basket";
 
 import configureStore from "./state";
 
@@ -35,11 +37,14 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Header />
+      <BrowserRouter>
+        <Header />
 
-      <main id="skip">
-        <ProductGrid />
-      </main>
+        <main id="skip">
+          <Route path="/" exact component={ProductGrid} />
+          <Route path="/basket" component={Basket} />
+        </main>
+      </BrowserRouter>
     </Provider>
   );
 };

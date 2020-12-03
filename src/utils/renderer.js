@@ -3,6 +3,7 @@
 import React from "react";
 import { render as rtlRender } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 
 import createStore from "../state";
 
@@ -18,11 +19,22 @@ function render(
   {
     initialState = reducerInitialState,
     store = configureStore(initialState),
+    initialEntries = ["/"],
+    initialIndex = 0,
     ...renderOptions
   } = {}
 ) {
   function Wrapper({ children }) {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      <Provider store={store}>
+        <MemoryRouter
+          initialEntries={initialEntries}
+          initialIndex={initialIndex}
+        >
+          {children}
+        </MemoryRouter>
+      </Provider>
+    );
   }
 
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
