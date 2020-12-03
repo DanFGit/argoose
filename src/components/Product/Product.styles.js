@@ -33,6 +33,7 @@ export const Price = styled.p`
 `;
 
 export const Quantity = styled.span`
+  display: block;
   text-align: right;
   font-size: 0.75rem;
   line-height: 0.75rem;

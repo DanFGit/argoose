@@ -17,6 +17,8 @@ jobs:
           node-version: "12.x"
       - run: yarn install
       - run: yarn build
+      - run: yarn test:ci
+      - run: yarn lint
       - uses: w9jds/firebase-action@v1.1.0
         with:
           args: deploy --only hosting
