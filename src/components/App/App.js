@@ -6,6 +6,8 @@ import ProductGrid from "../ProductGrid/ProductGrid";
 import Basket from "../Basket/Basket";
 
 import useFetchBasket from "../../hooks/useFetchBasket";
+import useOffline from "../../hooks/useOffline";
+import Offline from "../Offline/Offline";
 
 const App = () => {
   useFetchBasket();
@@ -31,9 +33,13 @@ const App = () => {
     };
   }, []);
 
+  const offline = useOffline();
+
   return (
     <>
       <Header />
+
+      {offline && <Offline />}
 
       <main id="skip">
         <Route path="/" exact component={ProductGrid} />

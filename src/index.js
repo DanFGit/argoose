@@ -20,3 +20,9 @@ const Root = () => (
 );
 
 ReactDOM.render(<Root />, document.querySelector("#app"));
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/service-worker.js");
+  });
+}
