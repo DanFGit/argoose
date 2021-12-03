@@ -1,5 +1,8 @@
 # Argoose
 
+> 💬 This was an interview exercise that I had a bit of fun with, went a bit
+crazy on the design. Runs on [Firebase](https://interview-281d8.web.app/).
+
 Headless ecommerce site. Ingests a list of products, allows user to browse
 and create a basket.
 
